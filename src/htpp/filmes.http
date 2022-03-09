@@ -1,0 +1,51 @@
+//Teste de Requisições REST - filmes
+@baseURL = http://localhost:4000
+@id = 
+###
+// Lista todos os filmes
+GET {{baseURL}}/filmes
+Content-Type: application/json
+
+###
+//Lista apenas um filme pelo id
+GET {{baseURL}}/filmes/{{id}}
+Content-Type: application/json
+
+###
+//Inclui um novo filme
+POST {{baseURL}}/filmes
+Content-Type: application/json
+
+{
+
+      "titulo": "Indiana Jones-Os Caçadores da Arca Perdida",
+      "lançamento":1981,
+      "gênero" : "Aventura",
+      "direção" : "Steven Spielberg ",
+      "elenco": "Robert Pattinson, Zoë Kravitz, Paul Dano",
+      "sinopse":"O arqueólogo Indiana Jones precisa encontrar a Arca da Aliança, uma relíquia bíblica que contém os dez mandamentos. Como o portador do artefato se torna invencível, os nazistas também vão fazer de tudo para adquirir esse precioso objeto."
+
+ }
+
+
+
+### 
+//Apaga um filme através do id informado
+DELETE {{baseURL}}/filmes/{{id}}
+Content-Type: application/json
+
+###
+//Altera um filme pelo ID
+PUT {{baseURL}}/filmes/
+Content-Type: application/json
+
+{
+    "_id": "622922269339ec627677a519", 
+    "titulo": "The Batman",
+    "lançamento":2021,
+    "gênero" : "Filme de heroi",
+    "direção" : "Matt Reeves ",
+    "elenco": "Robert Pattinson, Zoë Kravitz, Paul Dano",
+    "sinopse":"Batman (The Batman, no original) segue o segundo ano de Bruce Wayne (Robert Pattinson) como o herói de Gotham, causando medo nos corações dos criminosos da sombria cidade. Com apenas alguns aliados de confiança - Alfred Pennyworth (Andy Serkis) e o tenente James Gordon (Jeffrey Wright) - entre a rede corrupta de funcionários e figuras importantes do distrito, o vigilante solitário se estabeleceu como a única personificação da vingança entre seus concidadãos. Durante uma de suas investigações, Bruce acaba envolvendo a si mesmo e Gordon em um jogo de gato e rato, ao investigar uma série de maquinações sádicas em uma trilha de pistas enigmáticas estabelecida pelo vilão Charada. Quando o trabalho acaba o levando a descobrir uma onda de corrupção que envolve o nome de sua família, pondo em risco a própria integridade e as memórias que tinha sobre seu pai, Thomas Wayne, as evidências começam a chegar mais perto de casa, precisando, Batman, forjar novos relacionamentos, para assim desmascarar o culpado e fazer justiça ao abuso de poder e à corrupção que há muito tempo assola Gotham City.
+"
+}

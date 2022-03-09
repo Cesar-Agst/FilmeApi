@@ -1,0 +1,83 @@
+//selecionando o db
+
+use('FilmesBD')
+
+// remove a collection 
+db.filmes.drop()
+
+//cria a collecion com a validação do schema
+
+db.createCollection('filmes', {
+    validator: {
+       $jsonSchema: {
+           bsonType: 'object',
+           required: ['titulo','lançamento','gênero', 'direção','elenco', 'sinopse'],
+          
+          properties: {
+        
+              titulo: {
+                  bsonType: 'string',
+                  description: 'O titulo do filme é obrigatório'
+              },
+               lançamento:{
+                bsonType: 'int',
+                minimum: 1888,
+                maximum: 2040,
+                 description: 'O ano de lançamente é obrigatório [emtre 1888 a 2030]'
+              },
+              gênero:{
+                  bsonType:'string',
+                  description: 'O gênero do filme é obrigatório'
+              },
+              direção:{
+                  bsonType:'string',
+                  description: 'O nome do(a) diretor(a) é obrigatório'
+              },
+              elenco:{
+                  bsonType:'string',
+                  description:'O elenco do filme não é obrigatório'
+              },
+
+              sinopse:{
+                  bsonType:'string',
+                  description:' A descrição do filme não é obrigatória'
+              }
+
+          }   
+     }
+    },
+    validationLevel: 'strict', //moderate or off
+    validationAction: 'error' //warn
+}
+)
+
+    //inserir um novo filme no banco de dados
+
+    db.filmes.insertOne(
+        {
+        'titulo':'The Batman',
+        'lançamento':2022,
+        'gênero':'Filme de heroi',
+        'direção':'Matt Reeves',
+        'elenco':'Robert Pattinson, Zoë Kravitz, Paul Dano',
+        'sinopse':'Batman (The Batman, no original) segue o segundo ano de Bruce Wayne (Robert Pattinson) como o herói de Gotham, causando medo nos corações dos criminosos da sombria cidade. Com apenas alguns aliados de confiança - Alfred Pennyworth (Andy Serkis) e o tenente James Gordon (Jeffrey Wright) - entre a rede corrupta de funcionários e figuras importantes do distrito, o vigilante solitário se estabeleceu como a única personificação da vingança entre seus concidadãos. Durante uma de suas investigações, Bruce acaba envolvendo a si mesmo e Gordon em um jogo de gato e rato, ao investigar uma série de maquinações sádicas em uma trilha de pistas enigmáticas estabelecida pelo vilão Charada. Quando o trabalho acaba o levando a descobrir uma onda de corrupção que envolve o nome de sua família, pondo em risco a própria integridade e as memórias que tinha sobre seu pai, Thomas Wayne, as evidências começam a chegar mais perto de casa, precisando, Batman, forjar novos relacionamentos, para assim desmascarar o culpado e fazer justiça ao abuso de poder e à corrupção que há muito tempo assola Gotham City'
+    }
+    )
+
+
+     {
+
+    
+
+}
+
+
+    //lista os filmes registrados
+
+    db.filmes.find()
+   
+    //deletando filmes do bd
+    
+    //db.filmes.deleteOne(  {titulo:'Um cadaver para sobreviver'  }  )
+
+
